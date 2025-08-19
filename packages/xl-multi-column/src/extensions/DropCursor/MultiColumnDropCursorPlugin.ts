@@ -145,7 +145,8 @@ export function multiColumnDropCursor(
               id: UniqueID.options.generateID(),
             });
 
-          editor.removeBlocks([draggedBlock]);
+          if (editor.getBlock(draggedBlock.id))
+            editor.removeBlocks([draggedBlock]);
 
           editor.updateBlock(columnList, {
             children: newChildren,
@@ -162,7 +163,8 @@ export function multiColumnDropCursor(
 
           const blocks =
             position === "left" ? [draggedBlock, block] : [block, draggedBlock];
-          editor.removeBlocks([draggedBlock]);
+          if (editor.getBlock(draggedBlock.id))
+            editor.removeBlocks([draggedBlock]);
           editor.replaceBlocks(
             [block],
             [
